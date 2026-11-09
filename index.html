@@ -1,0 +1,760 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FashStore - Modern Ecommerce Store</title>
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="./output.css">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px;
+        }
+
+        /* Keep service SVG icons at a fixed size */
+        .service-icon {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+        }
+
+        /* Hero background for small screens */
+        @media (max-width: 767px) {
+            #home {
+                background-position: 65% center;
+            }
+
+            .hero-content {
+                background: rgba(222, 222, 224, 0.78);
+                padding: 24px;
+                border-radius: 8px;
+            }
+        }
+        
+/* Navbar Hover Underline Animation */
+
+.nav-link {
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background-color: #ef4444;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #ef4444;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+    </style>
+    <!-- AOS Animation CSS -->
+<link rel="stylesheet"
+      href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+
+<body class="m-0 w-full overflow-x-hidden bg-white text-gray-900">
+
+    <!-- ========== NAVBAR ========== -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+
+        <nav class="mx-auto flex max-w-7xl items-center
+                    justify-between px-6 py-5">
+
+            <!-- Logo -->
+            <a href="#home"
+               class="text-2xl font-extrabold tracking-tight">
+                Fash<span class="text-red-500">Store.</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            
+<!-- Desktop Navigation -->
+<div class="hidden items-center gap-8 md:flex">
+
+    <a href="#home" class="nav-link font-medium">
+        Home
+    </a>
+
+    <a href="#products" class="nav-link font-medium">
+        Products
+    </a>
+
+    <a href="#services" class="nav-link font-medium">
+        Services
+    </a>
+
+    <a href="#about" class="nav-link font-medium">
+        About Us
+    </a>
+
+    <a href="#contact" class="nav-link font-medium">
+        Contact
+    </a>
+
+</div>
+
+
+            <!-- Right Icons -->
+            <div class="flex items-center gap-5">
+
+                <!-- Search -->
+                <button type="button"
+                        aria-label="Search"
+                        class="transition hover:text-red-500">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="22" height="22"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round">
+
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+
+                    </svg>
+                </button>
+
+                <!-- Shopping Cart -->
+                <button id="openCart"
+        type="button"
+        aria-label="Shopping cart"
+        aria-controls="cartSidebar"
+        aria-expanded="false"
+        class="relative transition hover:text-red-500">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="22" height="22"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round">
+
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+
+                        <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/>
+
+                    </svg>
+
+                    <!-- Cart Count -->
+                    <span id="cartCount"
+                          class="absolute -right-2 -top-2
+                                 rounded-full bg-red-500
+                                 px-1.5 text-xs text-white">
+                        0
+                    </span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn"
+                        type="button"
+                        aria-label="Toggle menu"
+                        aria-controls="mobileMenu"
+                        aria-expanded="false"
+                        class="md:hidden">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="26" height="26"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round">
+
+                        <path d="M4 6h16M4 12h16M4 18h16"/>
+
+                    </svg>
+                </button>
+
+            </div>
+        </nav>
+
+        <!-- Mobile Navigation -->
+        <div id="mobileMenu"
+             class="hidden flex-col gap-4 border-t
+                    bg-white px-6 py-5 md:hidden">
+
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#services">Services</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main>
+
+        <!-- ========== HERO SECTION ========== -->
+        <section id="home"
+                 class="relative flex min-h-[600px] w-full
+                        items-center bg-[#dedee0]
+                        bg-cover bg-center bg-no-repeat
+                        md:min-h-[650px]"
+                 style="background-image: url('./assets/hero.png');">
+
+            <!-- Hero Container -->
+            <div class="relative z-10 mx-auto w-full
+                        max-w-7xl px-6 py-20 md:px-12">
+
+                <!-- Left Content -->
+                <div class="hero-content max-w-lg"
+                    data-aos="fade-right"
+                    data-aos-duration="1200">
+
+                    <!-- Heading -->
+                    <h1 class="mb-6 text-4xl font-extrabold
+                               leading-tight text-gray-950
+                               sm:text-5xl md:text-6xl">
+
+                        Brand New
+                        <span class="block">
+                            Collection
+                        </span>
+
+                    </h1>
+
+                    <!-- Description -->
+                    <p class="mb-8 max-w-md text-sm
+                              leading-7 text-gray-700">
+
+                        Discover the latest fashion trends
+                        and upgrade your style with our
+                        exclusive clothing collection.
+
+                    </p>
+
+                    <!-- Features -->
+                    <div class="mb-10 flex flex-wrap gap-6
+                                text-sm font-medium
+                                text-gray-800">
+
+                        <span>✔ Top Brands</span>
+                        <span>✔ High Quality</span>
+                        <span>✔ Free Delivery</span>
+
+                    </div>
+
+                    <!-- Explore Shop Button -->
+                    <a href="#products"
+                       class="inline-block bg-red-500
+                              px-8 py-4 text-sm font-bold
+                              text-white transition
+                              duration-300 hover:bg-red-600">
+
+                        EXPLORE SHOP
+
+                    </a>
+
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ========== SERVICES SECTION ========== -->
+        <section id="services"
+                 class="bg-[#17131c] py-12 text-white">
+
+            <div class="mx-auto grid max-w-7xl
+                        grid-cols-1 gap-10 px-6
+                        text-center sm:grid-cols-2
+                        lg:grid-cols-4">
+
+                <!-- Service 1 -->
+                <div class="flex flex-col items-center gap-3"
+                 data-aos="fade-up">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="36" height="36"
+                         class="service-icon"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="1.5"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <path d="M12 3 4.5 6v5.5c0 5 3.4 8.4 7.5 9.5 4.1-1.1 7.5-4.5 7.5-9.5V6L12 3Z"/>
+                        <path d="m9 12 2 2 4-4"/>
+
+                    </svg>
+
+                    <h3 class="text-base font-semibold">
+                        Secure Payment
+                    </h3>
+
+                    <p class="text-xs text-gray-400">
+                        100% secure payment
+                    </p>
+
+                </div>
+
+                <!-- Service 2 -->
+                <div class="flex flex-col items-center gap-3"
+                 data-aos="fade-up">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="36" height="36"
+                         class="service-icon"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="1.5"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <path d="M3 11a9 9 0 1 1 2.6 6.4"/>
+                        <path d="M3 4v7h7"/>
+                        <path d="M12 7v5l3 2"/>
+
+                    </svg>
+
+                    <h3 class="text-base font-semibold">
+                        30 Days Return
+                    </h3>
+
+                    <p class="text-xs text-gray-400">
+                        Easy product returns
+                    </p>
+
+                </div>
+
+                <!-- Service 3 -->
+                <div class="flex flex-col items-center gap-3"
+                 data-aos="fade-up">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="36" height="36"
+                         class="service-icon"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="1.5"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <path d="M3 14v-3a9 9 0 0 1 18 0v3"/>
+                        <rect x="3" y="12" width="4"
+                              height="7" rx="2"/>
+                        <rect x="17" y="12" width="4"
+                              height="7" rx="2"/>
+                        <path d="M19 19a5 5 0 0 1-5 3h-2"/>
+
+                    </svg>
+
+                    <h3 class="text-base font-semibold">
+                        24/7 Support
+                    </h3>
+
+                    <p class="text-xs text-gray-400">
+                        Dedicated customer support
+                    </p>
+
+                </div>
+
+                <!-- Service 4 -->
+                <div class="flex flex-col items-center gap-3"
+                data-aos="fade-up">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="36" height="36"
+                         class="service-icon"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="1.5"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <path d="M3 5h11v12H3zM14 9h4l3 4v4h-7z"/>
+                        <circle cx="7.5" cy="18" r="1.5"/>
+                        <circle cx="17.5" cy="18" r="1.5"/>
+
+                    </svg>
+
+                    <h3 class="text-base font-semibold">
+                        Free Delivery
+                    </h3>
+
+                    <p class="text-xs text-gray-400">
+                        On orders over $50
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
+         
+<!-- ========== NEW ARRIVALS ========== -->
+
+<!-- ========== NEW ARRIVALS ========== -->
+<section id="products" class="bg-white py-16 md:py-20">
+
+    <div class="mx-auto max-w-7xl px-6">
+
+        <!-- Heading -->
+        <div class="mb-10 flex items-end justify-between gap-4">
+
+            <div>
+                <p class="mb-2 text-sm text-gray-500">
+                    Check out latest products
+                </p>
+
+                <h2 class="text-3xl font-extrabold">
+                    New Arrivals
+                </h2>
+            </div>
+
+            <a href="#products"
+               class="border border-gray-300 px-5 py-3
+                      text-xs font-semibold hover:bg-gray-900
+                      hover:text-white">
+                VIEW ALL
+            </a>
+
+        </div>
+
+        <!-- Products automatically appear here -->
+        <div id="productGrid"
+             class="grid grid-cols-2 gap-5
+                    md:grid-cols-4 md:gap-8">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========== ABOUT US SECTION ========== -->
+<section id="about" class="bg-gray-50 py-16 md:py-24">
+
+    <div class="mx-auto grid max-w-7xl
+                grid-cols-1 items-center gap-12 px-6
+                md:grid-cols-2">
+
+        <!-- About Image -->
+        
+<div class="overflow-hidden rounded-lg"
+     data-aos="fade-right"
+     data-aos-duration="1200">
+
+
+            <img src="./assets/about.png"
+                 alt="FashStore Fashion Collection"
+                 class="h-[350px] w-full object-cover
+                        md:h-[450px]">
+
+        </div>
+
+        <!-- About Content -->
+        
+<div data-aos="fade-left"
+     data-aos-duration="1200"
+     data-aos-delay="200">
+
+
+            <p class="mb-3 text-sm font-bold
+                      uppercase tracking-widest text-red-500">
+                About FashStore
+            </p>
+
+            <h2 class="mb-6 text-3xl font-extrabold
+                       leading-tight text-gray-900
+                       md:text-4xl">
+                Fashion for Every Style
+            </h2>
+
+            <p class="mb-5 text-sm leading-8 text-gray-600">
+                Welcome to FashStore, your destination
+                for modern fashion and everyday style.
+                We bring together trendy clothing,
+                footwear, and accessories to help you
+                express your unique personality.
+            </p>
+
+            <p class="mb-8 text-sm leading-8 text-gray-600">
+                Our goal is to make fashion simple,
+                stylish, and accessible for everyone.
+                Explore our latest collections and
+                discover your next favorite look.
+            </p>
+
+            <!-- Shop Now Button -->
+            <a href="#products"
+               class="inline-block bg-red-500 px-8 py-4
+                      text-sm font-bold text-white
+                      transition duration-300
+                      hover:bg-red-600">
+                SHOP NOW
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+    </main>
+ 
+    
+<!-- ========== FOOTER SECTION ========== -->
+<footer id="contact" class="bg-[#17131c] text-white">
+
+    <div class="mx-auto grid max-w-7xl
+                grid-cols-1 gap-10 px-6 py-16
+                sm:grid-cols-2 lg:grid-cols-4">
+
+        <!-- Brand Information -->
+        <div data-aos="fade-up"
+     data-aos-delay="0"
+     data-aos-duration="800">
+
+            <h2 class="mb-5 text-3xl font-extrabold">
+                Fash<span class="text-red-500">Store.</span>
+            </h2>
+
+            <p class="mb-6 text-sm leading-7 text-gray-400">
+                Discover the latest fashion trends
+                and shop your favorite clothing,
+                shoes, and accessories.
+            </p>
+
+            <!-- Social Media -->
+            <div class="flex items-center gap-4">
+
+                <a href="https://www.facebook.com/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Facebook"
+                   class="hover:text-red-500">
+                    Facebook
+                </a>
+
+                <a href="https://www.instagram.com/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Instagram"
+                   class="hover:text-red-500">
+                    Instagram
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Quick Links -->
+        <div data-aos="fade-up"
+     data-aos-delay="150"
+     data-aos-duration="800">
+
+            <h3 class="mb-5 text-lg font-bold">
+                Quick Links
+            </h3>
+
+            <ul class="space-y-3 text-sm text-gray-400">
+
+                <li>
+                    <a href="#home"
+                       class="hover:text-red-500">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#products"
+                       class="hover:text-red-500">
+                        Products
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#services"
+                       class="hover:text-red-500">
+                        Services
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#about"
+                       class="hover:text-red-500">
+                        About Us
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- Customer Service -->
+        <div data-aos="fade-up"
+     data-aos-delay="300"
+     data-aos-duration="800">
+
+            <h3 class="mb-5 text-lg font-bold">
+                Customer Service
+            </h3>
+
+            <ul class="space-y-3 text-sm text-gray-400">
+
+                <li>Help Center</li>
+                <li>Shipping Information</li>
+                <li>Returns & Exchanges</li>
+                <li>Privacy Policy</li>
+
+            </ul>
+
+        </div>
+
+        <!-- Contact Information -->
+        <div>
+
+            <h3 class="mb-5 text-lg font-bold">
+                Contact Us
+            </h3>
+
+            <p class="mb-3 text-sm text-gray-400">
+                Have questions about our products?
+            </p>
+
+            <p class="text-sm text-gray-400">
+                Contact our customer support team.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="border-t border-gray-800 py-6">
+
+        <p class="text-center text-sm text-gray-400">
+            &copy; 2026 FashStore.
+            All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+<!-- ========== CART OVERLAY ========== -->
+<div id="cartOverlay"
+     class="fixed inset-0 z-[60] hidden bg-black/50">
+</div>
+
+<!-- ========== CART SIDEBAR ========== -->
+<aside id="cartSidebar"
+       class="fixed right-0 top-0 z-[70]
+              flex h-full w-full max-w-md
+              translate-x-full flex-col bg-white
+              shadow-2xl transition-transform
+              duration-300">
+
+    <!-- Cart Header -->
+    <div class="flex items-center justify-between
+                border-b px-6 py-5">
+
+        <h2 class="text-2xl font-bold">
+            Shopping Cart
+        </h2>
+
+        <button id="closeCart"
+                type="button"
+                aria-label="Close cart"
+                class="text-2xl hover:text-red-500">
+            &times;
+        </button>
+
+    </div>
+
+    <!-- Cart Products -->
+    <div id="cartItems"
+         class="flex-1 overflow-y-auto px-6 py-5">
+
+        <p class="text-gray-500">
+            Your cart is empty.
+        </p>
+
+    </div>
+
+    <!-- Cart Footer -->
+    <div class="border-t bg-gray-50 px-6 py-5">
+
+        <div class="mb-5 flex items-center
+                    justify-between">
+
+            <span class="text-lg font-semibold">
+                Subtotal
+            </span>
+
+            <span id="cartTotal"
+                  class="text-xl font-bold">
+                $0.00
+            </span>
+
+        </div>
+
+        <button id="clearCart"
+                type="button"
+                class="w-full border border-gray-300
+                       py-3 font-semibold
+                       transition hover:bg-gray-200">
+            CLEAR CART
+        </button>
+
+        <button id="continueShopping"
+                type="button"
+                class="mt-3 w-full bg-red-500 py-3
+                       font-semibold text-white
+                       transition hover:bg-red-600">
+            CONTINUE SHOPPING
+        </button>
+
+    </div>
+
+</aside>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script src="./script.js"></script>
+    
+<!-- AOS Animation JavaScript -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="./script.js"></script>
+
+<script>
+    AOS.init({
+        duration: 1000,
+        easing: "ease-in-out",
+        once: true,
+        offset: 100
+    });
+</script>
+
+
+</body>
+</html>
